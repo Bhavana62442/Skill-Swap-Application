@@ -1,0 +1,160 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00332f;
+    height: 100vh;
+    padding: 2rem;
+}
+  
+.login-form {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+  
+.login-form h2 {
+    margin-bottom: 1.5rem;
+    color: #00332f;
+}
+  
+.login-form input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+  
+.login-form button {
+    width: 100%;
+    background-color: #4cb08b;
+    color: #ffffff;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+  
+.login-form button:hover {
+    background-color: #00452e;
+}
+
+/* Forgot password link */
+.forgot-password {
+    display: block;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    color: #4cb08b;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Divider between login and social buttons */
+.divider {
+    margin: 1.5rem 0;
+    color: #aaa;
+    position: relative;
+    font-size: 0.9rem;
+}
+.divider::before,
+.divider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: #ccc;
+}
+.divider::before {
+    left: 0;
+}
+.divider::after {
+    right: 0;
+}
+
+/* Social login container */
+.social-login {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    width: 100%;
+  }
+  
+  .social-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 48%; /* Make both buttons take up equal space */
+  }
+  
+  .google-button {
+    background-color: #f4f4f4;
+  }
+  
+  .google-button:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .microsoft-button {
+    background-color: #f4f4f4;
+  }
+  
+  .microsoft-button:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .social-button span {
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    color: #00332f;
+  }
+  
+  .signup-link {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  .signin-label {
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: 500;
+  }
+  
+  .icon-row {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 0.5rem 0 1rem 0;
+  }
+
+  .signup-link{
+    cursor: pointer;
+    color:#00332f;
+    transition: color 0.2s ease;
+  }
+  .signup-link:hover{
+    color:#007c72;
+  }
+  .auth-icon {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .auth-icon:hover {
+    transform: scale(1.1);
+  }
+  
