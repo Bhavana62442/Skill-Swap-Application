@@ -1,0 +1,64 @@
+/* AddSkills.css */
+
+.add-skills-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00332f; /* Matches login and dashboard background */
+    min-height: 100vh;
+    padding: 2rem;
+  }
+  
+  .add-skills-form {
+    background-color: #ffffff; /* White form background */
+    padding: 2rem;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px; /* Matches login form width */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    text-align: center;
+  }
+  
+  .add-skills-form h2 {
+    margin-bottom: 1.5rem;
+    color: #00332f; /* Dark teal for headers */
+    font-size: 1.5rem;
+  }
+  
+  .add-skills-form input,
+  .add-skills-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .add-skills-form textarea {
+    resize: vertical; /* Allow vertical resizing only */
+    min-height: 100px;
+  }
+  
+  .add-skills-form input:focus,
+  .add-skills-form textarea:focus {
+    outline: none;
+    border-color: #4cb08b; /* Highlight with teal on focus */
+  }
+  
+  .add-skills-form button {
+    width: 100%;
+    background-color: #4cb08b; /* Teal button */
+    color: #ffffff;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-skills-form button:hover {
+    background-color: #00452e; /* Darker teal on hover */
+  }

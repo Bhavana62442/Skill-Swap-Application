@@ -1,108 +1,84 @@
-/* explore.css */
+.explore-skills-page {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
 
-.explore-container {
-    display: flex;
-    min-height: 100vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8fafd;
-    padding: 2rem;
-  }
-  
-  .filters-sidebar {
-    width: 250px;
-    background-color: #ffffff;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-    margin-right: 2rem;
-  }
-  
-  .filters-sidebar h2 {
-    font-size: 1.4rem;
-    color: #00332f;
-    margin-bottom: 1rem;
-  }
-  
-  .filters-sidebar label {
-    display: block;
-    margin-bottom: 0.75rem;
-    color: #333;
-    font-weight: 500;
-  }
-  
-  .explore-main {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .search-bar {
-    margin-bottom: 2rem;
-  }
-  
-  .search-bar input {
-    width: 100%;
-    padding: 0.8rem 1rem;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 1rem;
-  }
-  
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1.5rem;
-  }
-  
-  .skill-card {
-    background-color: #ffffff;
-    padding: 1.5rem;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease;
-  }
-  
-  .skill-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  .skill-card img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 1rem;
-  }
-  
-  .skill-card h3 {
-    margin: 0.5rem 0;
-    color: #00332f;
-  }
-  
-  .skill-card p {
-    margin: 0.25rem 0;
-    color: #444;
-    font-size: 0.95rem;
-  }
-  
-  .skill-card .rating {
-    color: #f4b400;
-    font-weight: bold;
-  }
-  
-  .swap-btn {
-    background-color: #00c2a8;
-    color: #fff;
-    border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    margin-top: 0.75rem;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .swap-btn:hover {
-    background-color: #009e89;
-  }
-  
+h1 {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.search-filter-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-filter-section input {
+  width: 40%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.filters select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.skills-list-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.skill-card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.skill-card h3 {
+  font-size: 1.25rem;
+}
+
+.skill-card button {
+  padding: 10px;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.skill-card button:hover {
+  background-color: #004d99;
+}
+
+.pagination {
+  text-align: center;
+}
+
+.pagination button {
+  padding: 10px 20px;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #004d99;
+}

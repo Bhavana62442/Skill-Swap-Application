@@ -6,6 +6,7 @@ import Register from './pages/Register'
 import Landing from './pages/Landing'
 import Profile from './pages/Profile'
 import Explore from './pages/Explore'
+import AddSkills from './pages/AddSkills'
 function App() {
   return (
     <div className="App">
@@ -18,6 +19,7 @@ function App() {
             <Route path = "/" element = {<Landing/>}/>
             <Route path = "/profile" element = {<Profile/>}/>
             <Route path = "/explore" element = {<Explore/>}/>
+            <Route path = "/addskills" element = {<AddSkills/>}/>
           </Routes>
         </div>
       </BrowserRouter>

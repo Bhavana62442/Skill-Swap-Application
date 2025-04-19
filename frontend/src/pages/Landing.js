@@ -27,9 +27,7 @@ function Landing() {
         <p>Exchange skills with others and learn something new at no cost.</p>
         <div className="hero-buttons">
           <button onClick={() => navigate("/register")}>Get Started</button>
-          <button onClick={() => document.getElementById("features").scrollIntoView({ behavior: "smooth" })}>
-            Explore Skills
-          </button>
+          <button onClick={() => navigate("/explore")}>Explore Skills</button>
         </div>
       </section>
 
