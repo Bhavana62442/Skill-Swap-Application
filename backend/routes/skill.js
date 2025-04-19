@@ -1,25 +1,32 @@
-const express = require('express')
+// routes/skills.js
+const express = require('express');
+const router = express.Router();
+const Skill = require('../models/AddSkills.js'); // 🔥 Import the model
 
-const router = express.Router()
+// POST - Add new skill
+router.post('/', async (req, res) => {
+  try {
+    const { skillName, category, description, skillLevel, location, availability } = req.body;
+    if (!skillName || !category || !description || !skillLevel || !availability) {
+      return res.status(400).json({ success: false, message: 'Missing fields' });
+    }
 
-router.get('/',(req,res) => {
-    res.json({mssg:'get response'})
-})
+    const newSkill = new Skill({ skillName, category, description, skillLevel, location, availability });
+    await newSkill.save();
+    res.status(201).json({ success: true, message: 'Skill added!', skill: newSkill });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+});
 
-router.get('/:id',(req,res) => {
-    res.json({mssg:'get single response'})
-})
+// GET - Fetch all skills
+router.get('/', async (req, res) => {
+  try {
+    const skills = await Skill.find().sort({ createdAt: -1 });
+    res.json(skills);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to fetch skills' });
+  }
+});
 
-router.post('/',(req,res)=>{
-    res.json({mssg:'post response'})
-})
-
-router.delete('/:id',(req,res) => {
-    res.json({mssg:'delete response'})
-})
-
-router.patch('/:id',(req,res) => {
-    res.json({mssg:'update response'})
-})
-
-module.exports = router
+module.exports = router;
