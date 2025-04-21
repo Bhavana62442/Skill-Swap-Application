@@ -1,0 +1,67 @@
+.swap-requests {
+  padding: 2rem;
+  max-width: 800px;
+  margin: auto;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.swap-requests h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #00332f;
+}
+
+.request-card {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  list-style: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.request-card p {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.actions button {
+  padding: 0.5rem 1rem;
+  background: #00796b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.actions button:hover {
+  background: #004d40;
+}
+
+.actions button:nth-child(2) {
+  background: #d32f2f;
+}
+
+.actions button:nth-child(2):hover {
+  background: #b71c1c;
+}
+
+/* ⭐ Small star rating for card display */
+.small-stars {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #ffc107;
+  margin-top: 0.3rem;
+}
