@@ -6,7 +6,8 @@ import {
   signInWithPopup,
   OAuthProvider,
 } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase"; // ⬅️ add db
+import { doc, getDoc } from "firebase/firestore"; // ⬅️ Firestore tools
 import { useNavigate } from "react-router-dom";
 import { FaGoogle, FaMicrosoft } from "react-icons/fa";
 import "../css/Login.css";
@@ -16,11 +17,22 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const checkUserProfile = async (uid) => {
+    const docRef = doc(db, "users", uid);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      navigate("/dashboard");
+    } else {
+      navigate("/set-profile");
+    }
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate("/Dashboard");
+      const userCred = await signInWithEmailAndPassword(auth, email, password);
+      const uid = userCred.user.uid;
+      await checkUserProfile(uid);
     } catch (err) {
       alert(err.message);
     }
@@ -29,8 +41,9 @@ const Login = () => {
   const handleGoogleLogin = async () => {
     const provider = new GoogleAuthProvider();
     try {
-      await signInWithPopup(auth, provider);
-      alert("Logged in with Google!");
+      const result = await signInWithPopup(auth, provider);
+      const uid = result.user.uid;
+      await checkUserProfile(uid);
     } catch (err) {
       alert(err.message);
     }
@@ -39,8 +52,9 @@ const Login = () => {
   const handleMicrosoftLogin = async () => {
     const provider = new OAuthProvider("microsoft.com");
     try {
-      await signInWithPopup(auth, provider);
-      alert("Logged in with Microsoft!");
+      const result = await signInWithPopup(auth, provider);
+      const uid = result.user.uid;
+      await checkUserProfile(uid);
     } catch (err) {
       alert(err.message);
     }

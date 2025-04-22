@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import '../css/Dashboard.css'
+import { useEffect } from 'react';
+import { auth } from '../firebase'; // make sure this path is correct
+
 
 //sample
 const sampleRequests = [
@@ -19,6 +22,17 @@ const Dashboard = () => {
   const [skillRequests, setSkillRequests] = useState(sampleRequests);
   const [sessions, setSessions] = useState(sampleSessions);
 
+  useEffect(() => {
+    const user = auth.currentUser;
+    if (user) {
+      console.log("User UID:", user.uid); // 👈 your UID
+      // Optionally set UID in state if needed
+    } else {
+      console.log("No user is logged in");
+      // Optionally redirect to login
+    }
+  }, []);
+  
   const handleRequestAction = (id, action) => {
     setSkillRequests((prevRequests) =>
       prevRequests.map((req) =>
@@ -71,7 +85,7 @@ const Dashboard = () => {
               <p>Skills Offered: 3</p>
               <p>Skills Needed: 2</p>
               <p>Total Skill Swaps/Requests: 5</p>
-              <button>Edit Profile</button>
+              <button onClick={() => navigate("/profile")}>Edit Profile</button>
               <button onClick={() => navigate("/addskills")}>Add New Skill</button>
             </div>
           </section>

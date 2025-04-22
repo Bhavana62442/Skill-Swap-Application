@@ -7,6 +7,9 @@ import Landing from './pages/Landing'
 import Profile from './pages/Profile'
 import Explore from './pages/Explore'
 import AddSkills from './pages/AddSkills'
+import SetProfile from './pages/SetProfile'
+import MessagingPage from './pages/Messaging';
+
 function App() {
   return (
     <div className="App">
@@ -20,6 +23,8 @@ function App() {
             <Route path = "/profile" element = {<Profile/>}/>
             <Route path = "/explore" element = {<Explore/>}/>
             <Route path = "/addskills" element = {<AddSkills/>}/>
+            <Route path = "/users" element = {<SetProfile/>}/>
+            <Route path = "/messaging" element = {<MessagingPage/>}/>
           </Routes>
         </div>
       </BrowserRouter>

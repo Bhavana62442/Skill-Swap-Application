@@ -1,68 +1,121 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import '../css/Messaging.css';
+// src/components/MessagingPage.js
+import React, { useState, useEffect, useRef } from 'react';
+import { io } from 'socket.io-client';
 
-const Messaging = () => {
-  const { userId } = useParams();
+const SOCKET_SERVER_URL = 'http://localhost:5000'; // adjust as needed
+
+const MessagingPage = () => {
   const [messages, setMessages] = useState([]);
-  const [newMessage, setNewMessage] = useState('');
-  const [recipient, setRecipient] = useState('');
+  const [text, setText] = useState('');
+  const socketRef = useRef();
 
-  // Mock data - replace with actual API calls
   useEffect(() => {
-    // Fetch conversation with userId
-    const mockMessages = [
-      { id: 1, sender: 'John', text: 'Hi there!', timestamp: '10:30 AM' },
-      { id: 2, sender: 'You', text: 'Hello!', timestamp: '10:32 AM' },
-      { id: 3, sender: 'John', text: 'Are you still interested in the skill swap?', timestamp: '10:33 AM' },
-    ];
-    setMessages(mockMessages);
-    setRecipient('John Doe');
-  }, [userId]);
+    // 1) create socket connection
+    socketRef.current = io(SOCKET_SERVER_URL);
 
-  const handleSend = (e) => {
-    e.preventDefault();
-    if (!newMessage.trim()) return;
-    
-    const newMsg = {
-      id: messages.length + 1,
-      sender: 'You',
-      text: newMessage,
-      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-    };
-    
-    setMessages([...messages, newMsg]);
-    setNewMessage('');
+    // 2) listen for incoming messages
+    socketRef.current.on('receive-message', (message, senderId) => {
+      setMessages((prev) => [
+        ...prev,
+        { text: message, byMe: senderId === socketRef.current.id },
+      ]);
+    });
+
+    // cleanup on unmount
+    return () => socketRef.current.disconnect();
+  }, []);
+
+  const sendMessage = () => {
+    if (!text.trim()) return;
+    // emit to server
+    socketRef.current.emit('send-message', text, socketRef.current.id);
+    // optimistically add to UI
+    setMessages((prev) => [...prev, { text, byMe: true }]);
+    setText('');
   };
 
   return (
-    <div className="messaging-container">
-      <div className="conversation-header">
-        <h3>Conversation with {recipient}</h3>
-      </div>
-      
-      <div className="messages-list">
-        {messages.map((msg) => (
-          <div key={msg.id} className={`message ${msg.sender === 'You' ? 'sent' : 'received'}`}>
-            <div className="message-content">
-              <p>{msg.text}</p>
-              <span className="timestamp">{msg.timestamp}</span>
-            </div>
+    <div style={styles.container}>
+      <div style={styles.messages}>
+        {messages.map((m, i) => (
+          <div
+            key={i}
+            style={{
+              ...styles.message,
+              ...(m.byMe ? styles.myMessage : styles.otherMessage),
+            }}
+          >
+            {m.text}
           </div>
         ))}
       </div>
-      
-      <form className="message-input" onSubmit={handleSend}>
+      <div style={styles.inputBar}>
         <input
-          type="text"
-          value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
-          placeholder="Type your message..."
+          style={styles.input}
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
+          placeholder="Type a message..."
         />
-        <button type="submit">Send</button>
-      </form>
+        <button style={styles.button} onClick={sendMessage}>
+          Send
+        </button>
+      </div>
     </div>
   );
 };
 
-export default Messaging;
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100vh',
+    fontFamily: 'Arial, sans-serif',
+  },
+  messages: {
+    flex: 1,
+    overflowY: 'auto',
+    padding: '10px',
+    background: '#f4f4f4',
+  },
+  message: {
+    padding: '8px 12px',
+    borderRadius: '16px',
+    margin: '6px 0',
+    maxWidth: '70%',
+  },
+  myMessage: {
+    background: '#007BFF',
+    color: '#fff',
+    alignSelf: 'flex-end',
+  },
+  otherMessage: {
+    background: '#e5e5ea',
+    color: '#000',
+    alignSelf: 'flex-start',
+  },
+  inputBar: {
+    display: 'flex',
+    padding: '10px',
+    borderTop: '1px solid #ddd',
+    background: '#fff',
+  },
+  input: {
+    flex: 1,
+    padding: '10px',
+    borderRadius: '20px',
+    border: '1px solid #ccc',
+    outline: 'none',
+  },
+  button: {
+    marginLeft: '10px',
+    padding: '0 20px',
+    border: 'none',
+    borderRadius: '20px',
+    background: '#007BFF',
+    color: '#fff',
+    cursor: 'pointer',
+  },
+};
+
+export default MessagingPage;

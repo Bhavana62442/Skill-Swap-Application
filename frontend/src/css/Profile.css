@@ -1,102 +1,248 @@
-.profile-container {
-    padding: 2rem;
-    display: flex;
-    justify-content: center;
-    background-color: #e0f7f1;
-    min-height: 100vh;
-    font-family: 'Segoe UI', sans-serif;
+/* Profile.css */
+
+/* Wrapper for the entire profile page */
+.profile-wrapper {
+  display: flex;
+  max-width: 1200px;
+  margin: 2rem auto;
+  background-color: #f5f7fa; /* Light blue-gray background */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Sidebar styles */
+.profile-sidebar {
+  width: 30%;
+  padding: 2rem;
+  background-color: #e8f5e9; /* Light green background */
+  border-right: 1px solid #d1e7d2; /* Light green border */
+  border-radius: 8px 0 0 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-sidebar .avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.profile-sidebar .avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-sidebar h2 {
+  font-size: 1.5rem;
+  color: #2ecc71; /* Medium green */
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.profile-sidebar .title {
+  font-size: 1rem;
+  color: #7f8c8d; /* Gray */
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.profile-sidebar .location {
+  font-size: 0.9rem;
+  color: #7f8c8d; /* Gray */
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.profile-sidebar .actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.profile-sidebar .follow-btn,
+.profile-sidebar .message-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.profile-sidebar .follow-btn {
+  background-color: #3498db; /* Blue from the image */
+  color: white;
+}
+
+.profile-sidebar .message-btn {
+  background-color: #2ecc71; /* Green theme */
+  color: white;
+}
+
+.profile-sidebar .social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.profile-sidebar .social-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.profile-sidebar .social-link .icon {
+  font-size: 1.2rem;
+}
+
+.profile-sidebar .social-link a {
+  font-size: 0.9rem;
+  color: #3498db; /* Blue for links */
+  text-decoration: none;
+}
+
+.profile-sidebar .social-link a:hover {
+  text-decoration: underline;
+}
+
+/* Main content styles */
+.profile-main {
+  width: 70%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.info-section {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.info-section .info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ecf0f1; /* Light gray border */
+}
+
+.info-section .info-item:last-child {
+  border-bottom: none;
+}
+
+.info-section .info-item span:first-child {
+  font-weight: 600;
+  color: #7f8c8d; /* Gray */
+}
+
+.info-section .info-item span:last-child {
+  color: #34495e; /* Darker gray */
+}
+
+.edit-btn {
+  align-self: flex-end;
+  padding: 0.5rem 1rem;
+  background-color: #2ecc71; /* Green theme */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.status-section {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.status-section h3 {
+  font-size: 1.2rem;
+  color: #2ecc71; /* Green theme */
+  margin-bottom: 1rem;
+}
+
+.status-section .info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.status-section .info-item:last-child {
+  border-bottom: none;
+}
+
+.status-section .info-item span:first-child {
+  font-weight: 600;
+  color: #7f8c8d;
+}
+
+.status-section .info-item span:last-child {
+  color: #34495e;
+}
+
+.status-section .status-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.status-section .status-item span {
+  font-weight: 600;
+  color: #7f8c8d;
+}
+
+.status-section .progress-bar {
+  width: 60%;
+  height: 10px;
+  background-color: #ecf0f1; /* Light gray background */
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.status-section .progress {
+  height: 100%;
+  background-color: #3498db; /* Blue progress bar */
+  transition: width 0.3s ease-in-out;
+}
+
+/* Loading and error styles */
+.loading,
+.error {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  padding: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .profile-wrapper {
+    flex-direction: column;
   }
-  
-  .profile-card {
-    background-color: #ffffff;
-    padding: 2rem;
-    border-radius: 12px;
+
+  .profile-sidebar {
     width: 100%;
-    max-width: 800px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-right: none;
+    border-bottom: 1px solid #d1e7d2;
+    border-radius: 8px 8px 0 0;
   }
-  
-  .profile-header {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+
+  .profile-main {
+    width: 100%;
   }
-  
-  .profile-picture {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 4px solid #a8e6cf;
-    object-fit: cover;
+
+  .status-section .progress-bar {
+    width: 50%;
   }
-  
-  .profile-info h2 {
-    margin: 0;
-    font-size: 2rem;
-    color: #00332f;
-  }
-  
-  .profile-info .bio,
-  .profile-info .location {
-    color: #555;
-    margin-top: 0.3rem;
-  }
-  
-  .profile-section {
-    margin-bottom: 2rem;
-  }
-  
-  .profile-section h3 {
-    margin-bottom: 0.5rem;
-    color: #004d40;
-  }
-  
-  .skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .skill-tags span {
-    background-color: #a8e6cf;
-    color: #00332f;
-    padding: 0.4rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: 500;
-  }
-  
-  .stars {
-    color: #fbc02d;
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .profile-buttons {
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  .edit-profile-button,
-  .action-button {
-    background-color: #88d8c0;
-    border: none;
-    padding: 0.6rem 1rem;
-    font-weight: 600;
-    color: #00332f;
-    border-radius: 6px;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  
-  .edit-profile-button:hover,
-  .action-button:hover {
-    background-color: #72c6ae;
-    transform: translateY(-2px);
-  }
-  
+}

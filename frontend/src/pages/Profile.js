@@ -1,102 +1,147 @@
-import React from 'react';
-import '../css/Dashboard.css';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import '../css/Profile.css';
 
 const Profile = () => {
-  const offeredSkills = ['UI/UX Design', 'Web Development', 'ReactJS'];
-  const learnSkills = ['Node.js', 'Figma', 'Data Visualization'];
+  const [userProfile, setUserProfile] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const userId = "fsd"; // Replace with the logged-in user's ID (from session or context)
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/skills/${userId}`);
+        setUserProfile(response.data[0]); // Assuming the response returns an array of profiles, take the first one
+      } catch (err) {
+        setError('Error fetching profile');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserProfile();
+  }, [userId]);
+
+  if (loading) return <div className="loading">Loading...</div>;
+  if (error) return <div className="error">{error}</div>;
+
+  // Mock project status data (since it's not in the API response)
+  const projectStatus = [
+    { name: "Web Design", progress: 70 },
+    { name: "Website Markup", progress: 50 },
+    { name: "One Page", progress: 60 },
+    { name: "Mobile Template", progress: 40 },
+    { name: "Backend API", progress: 80 },
+  ];
 
   return (
-    <div className="dashboard-container">
-      {/* Sidebar */}
-      <aside className="sidebar">
-        <div className="logo">SkillX</div>
-        <nav>
-          <ul>
-            <li>🏠 Home</li>
-            <li>📚 My Sessions</li>
-            <li>👥 Employees</li>
-            <li>📝 Notes</li>
-          </ul>
-        </nav>
-        <button className="action-button">+ Create Session</button>
-      </aside>
-
-      {/* Main Content */}
-      <main className="main-content">
-        <h1>👤 My Profile</h1>
-
-        <div className="overview-cards" style={{ flexWrap: 'wrap' }}>
-          {/* Profile Card */}
-          <div className="card" style={{ flex: '1 1 250px' }}>
-            <img 
-              src="https://via.placeholder.com/100" 
-              alt="Profile" 
-              style={{ borderRadius: '50%', marginBottom: '1rem' }}
-            />
-            <h2>Nicolas Henry</h2>
-            <p>📍 LA, USA</p>
-            <p>💼 Bio: Frontend Dev passionate about UI & Design</p>
-            <div style={{ marginTop: '1rem' }}>
-              <button className="action-button">✏️ Edit Profile</button>
-            </div>
+    <div className="profile-wrapper">
+      <div className="profile-sidebar">
+        <div className="avatar">
+          <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Avatar" />
+        </div>
+        <h2>{userProfile.displayName || "N/A"}</h2>
+        <p className="title">{userProfile.skillName || "N/A"}</p>
+        <p className="location">{userProfile.location || "N/A"}</p>
+        <div className="actions">
+          <button className="follow-btn">Follow</button>
+          <button className="message-btn">Message</button>
+        </div>
+        <div className="social-links">
+          <div className="social-link">
+            <span className="icon">🌐</span>
+            <a href="https://bootdey.com" target="_blank" rel="noopener noreferrer">bootdey.com</a>
           </div>
-
-          {/* Skills Offered */}
-          <div className="card" style={{ flex: '1 1 300px', textAlign: 'left' }}>
-            <h3>✅ Skills You Offer</h3>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-              {offeredSkills.map((skill, i) => (
-                <span key={i} style={{
-                  background: '#88d8c0',
-                  color: '#00332f',
-                  padding: '0.4rem 0.8rem',
-                  borderRadius: '999px',
-                  fontSize: '0.9rem',
-                  fontWeight: 600
-                }}>{skill}</span>
-              ))}
-            </div>
-            <button className="action-button" style={{ marginTop: '1rem' }}>➕ Add Skill</button>
+          <div className="social-link">
+            <span className="icon">🐱</span>
+            <a href="https://github.com/bootdey" target="_blank" rel="noopener noreferrer">bootdey</a>
           </div>
-
-          {/* Skills to Learn */}
-          <div className="card" style={{ flex: '1 1 300px', textAlign: 'left' }}>
-            <h3>📘 Skills You Want to Learn</h3>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-              {learnSkills.map((skill, i) => (
-                <span key={i} style={{
-                  background: '#b5ead7',
-                  color: '#00332f',
-                  padding: '0.4rem 0.8rem',
-                  borderRadius: '999px',
-                  fontSize: '0.9rem',
-                  fontWeight: 600
-                }}>{skill}</span>
-              ))}
-            </div>
-            <button className="action-button" style={{ marginTop: '1rem' }}>➕ Add Skill</button>
+          <div className="social-link">
+            <span className="icon">🐦</span>
+            <a href="https://twitter.com/bootdey" target="_blank" rel="noopener noreferrer">@bootdey</a>
           </div>
-
-          {/* Availability */}
-          <div className="card" style={{ flex: '1 1 250px' }}>
-            <h3>📅 Availability</h3>
-            <p>Mon - Fri: 5 PM - 9 PM</p>
-            <p>Sat - Sun: 10 AM - 6 PM</p>
-            <button className="action-button" style={{ marginTop: '1rem' }}>🕒 Edit Availability</button>
+          <div className="social-link">
+            <span className="icon">📸</span>
+            <a href="https://instagram.com/bootdey" target="_blank" rel="noopener noreferrer">bootdey</a>
           </div>
-
-          {/* Ratings & Feedback */}
-          <div className="card" style={{ flex: '1 1 350px' }}>
-            <h3>⭐ Ratings & Feedback</h3>
-            <p style={{ fontSize: '1.4rem' }}>⭐⭐⭐⭐☆ (4.5)</p>
-            <ul style={{ paddingLeft: '1rem', color: '#00332f' }}>
-              <li>"Great session on UI tips!" - Alice</li>
-              <li>"Very friendly and explains well." - Mark</li>
-              <li>"Helped me understand React hooks." - Dana</li>
-            </ul>
+          <div className="social-link">
+            <span className="icon">📘</span>
+            <a href="https://facebook.com/bootdey" target="_blank" rel="noopener noreferrer">bootdey</a>
           </div>
         </div>
-      </main>
+      </div>
+
+      <div className="profile-main">
+        <div className="info-section">
+          <div className="info-item">
+            <span>Full Name</span>
+            <span>{userProfile.fullName || "N/A"}</span>
+          </div>
+          <div className="info-item">
+            <span>Email</span>
+            <span>{userProfile.email || "N/A"}</span>
+          </div>
+          <div className="info-item">
+            <span>Phone</span>
+            <span>{userProfile.phone || "N/A"}</span>
+          </div>
+          <div className="info-item">
+            <span>Mobile</span>
+            <span>{userProfile.mobile || "N/A"}</span>
+          </div>
+          <div className="info-item">
+            <span>Address</span>
+            <span>{userProfile.location || "N/A"}</span>
+          </div>
+        </div>
+
+        <button className="edit-btn">Edit</button>
+
+        <div className="status-section">
+          <h3>Skills & Details</h3>
+          <div className="info-item">
+            <span>Skill Name</span>
+            <span>{userProfile.skillName || "N/A"}</span>
+          </div>
+          <div className="info-item">
+            <span>Category</span>
+            <span>{userProfile.category || "N/A"}</span>
+          </div>
+          <div className="info-item">
+            <span>Description</span>
+            <span>{userProfile.description || "N/A"}</span>
+          </div>
+          <div className="info-item">
+            <span>Skill Level</span>
+            <span>{userProfile.skillLevel || "N/A"}</span>
+          </div>
+          <div className="info-item">
+            <span>Availability</span>
+            <span>{userProfile.availability || "N/A"}</span>
+          </div>
+          <div className="info-item">
+            <span>Created At</span>
+            <span>{new Date(userProfile.createdAt).toLocaleString()}</span>
+          </div>
+          <div className="info-item">
+            <span>Updated At</span>
+            <span>{new Date(userProfile.updatedAt).toLocaleString()}</span>
+          </div>
+        </div>
+
+        <div className="status-section">
+          <h3>Project Status</h3>
+          {projectStatus.map((status, index) => (
+            <div key={index} className="status-item">
+              <span>{status.name}</span>
+              <div className="progress-bar">
+                <div className="progress" style={{ width: `${status.progress}%` }}></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
