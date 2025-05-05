@@ -9,7 +9,7 @@ import Explore from './pages/Explore'
 import AddSkills from './pages/AddSkills'
 import SetProfile from './pages/SetProfile'
 import MessagingPage from './pages/Messaging';
-
+import ProfileDisplayPage from './pages/ProfileDisplayPage'
 function App() {
   return (
     <div className="App">
@@ -25,6 +25,7 @@ function App() {
             <Route path = "/addskills" element = {<AddSkills/>}/>
             <Route path = "/users" element = {<SetProfile/>}/>
             <Route path = "/messaging" element = {<MessagingPage/>}/>
+            <Route path="/profiledisplay" element={<ProfileDisplayPage />} />
           </Routes>
         </div>
       </BrowserRouter>

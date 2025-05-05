@@ -6,38 +6,22 @@ const Skill = require('../models/AddSkills.js'); // 🔥 Import the model
 router.post('/', async (req, res) => {
   try {
     const { 
-      uid, 
-      username, 
-      displayName, 
       fullName, 
       email, 
       phone, 
-      mobile, 
-      skillName, 
-      category, 
-      description, 
-      skillLevel, 
       location, 
       availability 
     } = req.body;
 
     // Check for missing required fields
-    if (!uid || !username || !displayName || !fullName || !email || !skillName || !category || !description || !skillLevel || !availability) {
+    if (!fullName || !email || !availability) {
       return res.status(400).json({ success: false, message: 'Missing fields' });
     }
 
     const newSkill = new Skill({ 
-      uid, 
-      username, 
-      displayName, 
       fullName, 
       email, 
       phone, 
-      mobile, 
-      skillName, 
-      category, 
-      description, 
-      skillLevel, 
       location, 
       availability 
     });

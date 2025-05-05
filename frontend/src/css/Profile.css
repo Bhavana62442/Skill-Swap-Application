@@ -1,248 +1,232 @@
-/* Profile.css */
-
-/* Wrapper for the entire profile page */
-.profile-wrapper {
-  display: flex;
-  max-width: 1200px;
-  margin: 2rem auto;
-  background-color: #f5f7fa; /* Light blue-gray background */
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
-}
-
-/* Sidebar styles */
-.profile-sidebar {
-  width: 30%;
+/* Profile Header */
+.profile-header {
+  background-color: #ffffff;
   padding: 2rem;
-  background-color: #e8f5e9; /* Light green background */
-  border-right: 1px solid #d1e7d2; /* Light green border */
-  border-radius: 8px 0 0 8px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-direction: column;
   align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-.profile-sidebar .avatar {
+.profile-avatar {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  overflow: hidden;
-  margin-bottom: 1rem;
+  border: 3px solid #4cb08b;
 }
 
-.profile-sidebar .avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.profile-header-info h1 {
+  font-size: 2rem;
+  color: #00332f;
+  margin: 0;
 }
 
-.profile-sidebar h2 {
-  font-size: 1.5rem;
-  color: #2ecc71; /* Medium green */
-  margin-bottom: 0.5rem;
-  text-align: center;
-}
-
-.profile-sidebar .title {
+.profile-tagline {
   font-size: 1rem;
-  color: #7f8c8d; /* Gray */
-  margin-bottom: 0.5rem;
-  text-align: center;
+  color: #333;
+  margin: 0.5rem 0 0;
 }
 
-.profile-sidebar .location {
-  font-size: 0.9rem;
-  color: #7f8c8d; /* Gray */
+/* About Me Section */
+.about-me {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.about-me h2 {
+  font-size: 1.5rem;
+  color: #00332f;
   margin-bottom: 1rem;
-  text-align: center;
 }
 
-.profile-sidebar .actions {
+.about-me p {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Skills Offered */
+.skills-offered {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.skills-offered h2 {
+  font-size: 1.5rem;
+  color: #00332f;
+  margin-bottom: 1rem;
+}
+
+.skills-offered ul {
+  list-style: none;
+  padding: 0;
+}
+
+.skills-offered ul li {
+  font-size: 1rem;
+  color: #333;
+  padding: 0.5rem 0;
+}
+
+/* Skills Wanted */
+.skills-wanted {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.skills-wanted h2 {
+  font-size: 1.5rem;
+  color: #00332f;
+  margin-bottom: 1rem;
+}
+
+.skills-wanted ul {
+  list-style: none;
+  padding: 0;
+}
+
+.skills-wanted ul li {
+  font-size: 1rem;
+  color: #333;
+  padding: 0.5rem 0;
+}
+
+/* Availability and Location */
+.availability-location {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
   display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 
-.profile-sidebar .follow-btn,
-.profile-sidebar .message-btn {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
+.availability, .location {
+  flex: 1;
+}
+
+.availability h2, .location h2 {
+  font-size: 1.5rem;
+  color: #00332f;
+  margin-bottom: 1rem;
+}
+
+.availability p, .location p {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Swap Requests */
+.swap-requests {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.swap-requests h2 {
+  font-size: 1.5rem;
+  color: #00332f;
+  margin-bottom: 1rem;
+}
+
+.requests-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.requests-outgoing, .requests-incoming {
+  flex: 1;
+}
+
+.requests-outgoing h3, .requests-incoming h3 {
+  font-size: 1.2rem;
+  color: #00332f;
+  margin-bottom: 1rem;
+}
+
+.request-card {
+  background-color: #f4f4f4;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.request-card p {
   font-size: 0.9rem;
-  cursor: pointer;
+  color: #333;
+  margin: 0.3rem 0;
 }
 
-.profile-sidebar .follow-btn {
-  background-color: #3498db; /* Blue from the image */
-  color: white;
+/* Contact Section */
+.contact-section {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
 }
 
-.profile-sidebar .message-btn {
-  background-color: #2ecc71; /* Green theme */
-  color: white;
-}
-
-.profile-sidebar .social-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  width: 100%;
-}
-
-.profile-sidebar .social-link {
+.contact-buttons {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-}
-
-.profile-sidebar .social-link .icon {
-  font-size: 1.2rem;
-}
-
-.profile-sidebar .social-link a {
-  font-size: 0.9rem;
-  color: #3498db; /* Blue for links */
-  text-decoration: none;
-}
-
-.profile-sidebar .social-link a:hover {
-  text-decoration: underline;
-}
-
-/* Main content styles */
-.profile-main {
-  width: 70%;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
   gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
-.info-section {
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.info-section .info-item {
+.social-links {
   display: flex;
-  justify-content: space-between;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #ecf0f1; /* Light gray border */
+  gap: 15px;
 }
 
-.info-section .info-item:last-child {
-  border-bottom: none;
+.social-icon {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
 }
 
-.info-section .info-item span:first-child {
-  font-weight: 600;
-  color: #7f8c8d; /* Gray */
+.social-icon:hover {
+  transform: scale(1.1);
 }
 
-.info-section .info-item span:last-child {
-  color: #34495e; /* Darker gray */
-}
-
-.edit-btn {
-  align-self: flex-end;
-  padding: 0.5rem 1rem;
-  background-color: #2ecc71; /* Green theme */
-  color: white;
+.action-btn, .edit-profile-btn {
+  background-color: #4cb08b;
+  color: #ffffff;
+  padding: 0.8rem 1.2rem;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-.status-section {
-  background-color: white;
-  padding: 1.5rem;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
 
-.status-section h3 {
-  font-size: 1.2rem;
-  color: #2ecc71; /* Green theme */
-  margin-bottom: 1rem;
+.action-btn:hover, .edit-profile-btn:hover {
+  background-color: #00452e;
 }
 
-.status-section .info-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #ecf0f1;
-}
-
-.status-section .info-item:last-child {
-  border-bottom: none;
-}
-
-.status-section .info-item span:first-child {
-  font-weight: 600;
-  color: #7f8c8d;
-}
-
-.status-section .info-item span:last-child {
-  color: #34495e;
-}
-
-.status-section .status-item {
+/* Adjust top-nav to remove search bar spacing */
+.top-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 0;
-}
-
-.status-section .status-item span {
-  font-weight: 600;
-  color: #7f8c8d;
-}
-
-.status-section .progress-bar {
-  width: 60%;
-  height: 10px;
-  background-color: #ecf0f1; /* Light gray background */
-  border-radius: 5px;
-  overflow: hidden;
-}
-
-.status-section .progress {
-  height: 100%;
-  background-color: #3498db; /* Blue progress bar */
-  transition: width 0.3s ease-in-out;
-}
-
-/* Loading and error styles */
-.loading,
-.error {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #7f8c8d;
-  padding: 2rem;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .profile-wrapper {
-    flex-direction: column;
-  }
-
-  .profile-sidebar {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #d1e7d2;
-    border-radius: 8px 8px 0 0;
-  }
-
-  .profile-main {
-    width: 100%;
-  }
-
-  .status-section .progress-bar {
-    width: 50%;
-  }
+  background-color: #ffffff;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
 }

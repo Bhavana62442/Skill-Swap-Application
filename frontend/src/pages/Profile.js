@@ -1,149 +1,98 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import '../css/Profile.css';
+import React, { useState } from "react";
+import "../css/Profile.css";
 
-const Profile = () => {
-  const [userProfile, setUserProfile] = useState({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const userId = "fsd"; // Replace with the logged-in user's ID (from session or context)
+const ProfilePage = () => {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    location: "",
+    availability: "",
+  });
 
-  useEffect(() => {
-    const fetchUserProfile = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5000/api/skills/${userId}`);
-        setUserProfile(response.data[0]); // Assuming the response returns an array of profiles, take the first one
-      } catch (err) {
-        setError('Error fetching profile');
-      } finally {
-        setLoading(false);
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch("http://localhost:5000/api/skills", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        alert("Profile saved successfully!");
+        setFormData({
+          fullName: "",
+          email: "",
+          phone: "",
+          location: "",
+          availability: "",
+        });
+      } else {
+        alert("Failed to save profile!");
       }
-    };
-
-    fetchUserProfile();
-  }, [userId]);
-
-  if (loading) return <div className="loading">Loading...</div>;
-  if (error) return <div className="error">{error}</div>;
-
-  // Mock project status data (since it's not in the API response)
-  const projectStatus = [
-    { name: "Web Design", progress: 70 },
-    { name: "Website Markup", progress: 50 },
-    { name: "One Page", progress: 60 },
-    { name: "Mobile Template", progress: 40 },
-    { name: "Backend API", progress: 80 },
-  ];
+    } catch (err) {
+      console.error(err);
+      alert("Error saving profile!");
+    }
+  };
 
   return (
-    <div className="profile-wrapper">
-      <div className="profile-sidebar">
-        <div className="avatar">
-          <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Avatar" />
-        </div>
-        <h2>{userProfile.displayName || "N/A"}</h2>
-        <p className="title">{userProfile.skillName || "N/A"}</p>
-        <p className="location">{userProfile.location || "N/A"}</p>
-        <div className="actions">
-          <button className="follow-btn">Follow</button>
-          <button className="message-btn">Message</button>
-        </div>
-        <div className="social-links">
-          <div className="social-link">
-            <span className="icon">🌐</span>
-            <a href="https://bootdey.com" target="_blank" rel="noopener noreferrer">bootdey.com</a>
-          </div>
-          <div className="social-link">
-            <span className="icon">🐱</span>
-            <a href="https://github.com/bootdey" target="_blank" rel="noopener noreferrer">bootdey</a>
-          </div>
-          <div className="social-link">
-            <span className="icon">🐦</span>
-            <a href="https://twitter.com/bootdey" target="_blank" rel="noopener noreferrer">@bootdey</a>
-          </div>
-          <div className="social-link">
-            <span className="icon">📸</span>
-            <a href="https://instagram.com/bootdey" target="_blank" rel="noopener noreferrer">bootdey</a>
-          </div>
-          <div className="social-link">
-            <span className="icon">📘</span>
-            <a href="https://facebook.com/bootdey" target="_blank" rel="noopener noreferrer">bootdey</a>
-          </div>
-        </div>
-      </div>
+    <div className="profile-container">
+      <h1>Create Profile</h1>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="fullName"
+          placeholder="Full Name"
+          value={formData.fullName}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="text"
+          name="phone"
+          placeholder="Phone"
+          value={formData.phone}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="location"
+          placeholder="Location"
+          value={formData.location}
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="availability"
+          placeholder="Availability"
+          value={formData.availability}
+          onChange={handleChange}
+          required
+        />
 
-      <div className="profile-main">
-        <div className="info-section">
-          <div className="info-item">
-            <span>Full Name</span>
-            <span>{userProfile.fullName || "N/A"}</span>
-          </div>
-          <div className="info-item">
-            <span>Email</span>
-            <span>{userProfile.email || "N/A"}</span>
-          </div>
-          <div className="info-item">
-            <span>Phone</span>
-            <span>{userProfile.phone || "N/A"}</span>
-          </div>
-          <div className="info-item">
-            <span>Mobile</span>
-            <span>{userProfile.mobile || "N/A"}</span>
-          </div>
-          <div className="info-item">
-            <span>Address</span>
-            <span>{userProfile.location || "N/A"}</span>
-          </div>
-        </div>
-
-        <button className="edit-btn">Edit</button>
-
-        <div className="status-section">
-          <h3>Skills & Details</h3>
-          <div className="info-item">
-            <span>Skill Name</span>
-            <span>{userProfile.skillName || "N/A"}</span>
-          </div>
-          <div className="info-item">
-            <span>Category</span>
-            <span>{userProfile.category || "N/A"}</span>
-          </div>
-          <div className="info-item">
-            <span>Description</span>
-            <span>{userProfile.description || "N/A"}</span>
-          </div>
-          <div className="info-item">
-            <span>Skill Level</span>
-            <span>{userProfile.skillLevel || "N/A"}</span>
-          </div>
-          <div className="info-item">
-            <span>Availability</span>
-            <span>{userProfile.availability || "N/A"}</span>
-          </div>
-          <div className="info-item">
-            <span>Created At</span>
-            <span>{new Date(userProfile.createdAt).toLocaleString()}</span>
-          </div>
-          <div className="info-item">
-            <span>Updated At</span>
-            <span>{new Date(userProfile.updatedAt).toLocaleString()}</span>
-          </div>
-        </div>
-
-        <div className="status-section">
-          <h3>Project Status</h3>
-          {projectStatus.map((status, index) => (
-            <div key={index} className="status-item">
-              <span>{status.name}</span>
-              <div className="progress-bar">
-                <div className="progress" style={{ width: `${status.progress}%` }}></div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+        <button type="submit" className="submit-btn">
+          Save Profile
+        </button>
+      </form>
     </div>
   );
 };
 
-export default Profile;
+export default ProfilePage;
